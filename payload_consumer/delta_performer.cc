@@ -1225,20 +1225,20 @@ ErrorCode DeltaPerformer::CheckTimestampError() const {
         return error_code;
       }
     }
-    if (downgrade_detected) {
-      return ErrorCode::kPayloadTimestampError;
-    }
+    //if (downgrade_detected) {
+    //  return ErrorCode::kPayloadTimestampError;
+    //}
     return ErrorCode::kSuccess;
   }
 
   // For non-partial updates, check max_timestamp first.
-  if (manifest_.max_timestamp() < hardware_->GetBuildTimestamp()) {
-    LOG(ERROR) << "The current OS build timestamp ("
-               << hardware_->GetBuildTimestamp()
-               << ") is newer than the maximum timestamp in the manifest ("
-               << manifest_.max_timestamp() << ")";
-    return ErrorCode::kPayloadTimestampError;
-  }
+  //if (manifest_.max_timestamp() < hardware_->GetBuildTimestamp()) {
+  //  LOG(ERROR) << "The current OS build timestamp ("
+  //             << hardware_->GetBuildTimestamp()
+  //             << ") is newer than the maximum timestamp in the manifest ("
+  //             << manifest_.max_timestamp() << ")";
+  //  return ErrorCode::kPayloadTimestampError;
+  //}
   // Otherwise... partitions can have empty timestamps.
   for (const auto& partition : partitions) {
     auto error_code = timestamp_valid(
@@ -1248,9 +1248,9 @@ ErrorCode DeltaPerformer::CheckTimestampError() const {
       return error_code;
     }
   }
-  if (downgrade_detected) {
-    return ErrorCode::kPayloadTimestampError;
-  }
+  //if (downgrade_detected) {
+  //  return ErrorCode::kPayloadTimestampError;
+  //}
   return ErrorCode::kSuccess;
 }
 
